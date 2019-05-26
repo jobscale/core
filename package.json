@@ -1,0 +1,21 @@
+{
+  "name": "modules",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "lint": "eslint '**/*.js'"
+  },
+  "keywords": [],
+  "author": "jobscale",
+  "license": "MIT",
+  "dependencies": {
+    "node-fetch": "^2.1.2"
+  },
+  "devDependencies": {
+    "eslint": "^5.4.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "http-proxy-agent": "^2.1.0",
+    "https-proxy-agent": "^2.2.1"
+  }
+}
