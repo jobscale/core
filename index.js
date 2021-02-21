@@ -1,36 +1,43 @@
-(() => {
-  const native = () => {};
-  global.logger = {};
-  /* eslint-disable no-restricted-syntax */
-  for (const key in console) { /* eslint-enable no-restricted-syntax */
-    if ({}.hasOwnProperty.call(console, key)) {
-      /* eslint-disable no-console */
-      logger[key] = console[key];
-      console[key] = native; /* eslint-enable no-console */
-    }
+const std = console;
+const loader = require;
+const native = () => undefined;
+class Core {
+  constructor() {
+    global.logger = this.logger;
+    global.promiseGen = this.promiseGen;
+    global.fetch = this.fetch;
   }
-  global.promiseGen = () => {
+  get logger() {
+    const logger = {};
+    Object.entries(std).forEach(([key, value]) => {
+      logger[key] = value;
+      std[key] = native;
+    });
+    return logger;
+  }
+  promiseGen() {
     const promise = {};
-    promise.instance = new Promise((...argv) => {
+    promise.pending = new Promise((...argv) => {
       [promise.resolve, promise.reject] = argv;
     });
+    promise.instance = promise.pending;
     return promise;
-  };
-  global.fetch = (url, options) => {
-    const instanceOptions = Object.assign({}, options);
+  }
+  fetch(url, options) {
+    const instanceOptions = {};
+    Object.assign(instanceOptions, options);
     if (!instanceOptions.agent && process.env.http_proxy) {
       logger.log(process.env.http_proxy);
       const protocol = url.split(':')[0];
-      /* eslint-disable global-require, import/no-dynamic-require */
-      const Agent = require(`${protocol}-proxy-agent`);
+      const Agent = loader(`${protocol}-proxy-agent`);
       instanceOptions.agent = new Agent(process.env[`${protocol}_proxy`]);
     }
-    return require('node-fetch')(url, instanceOptions);
-    /* eslint-enable global-require, import/no-dynamic-require */
-  };
-})();
+    return loader('node-fetch')(url, instanceOptions);
+  }
+}
+const core = new Core();
 module.exports = {
-  logger: global.logger,
-  promiseGen: global.promiseGen,
-  fetch: global.fetch,
+  logger: core.logger,
+  promiseGen: core.promiseGen,
+  fetch: core.fetch,
 };
