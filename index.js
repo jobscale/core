@@ -26,11 +26,12 @@ class Core {
   fetch(url, options) {
     const instanceOptions = {};
     Object.assign(instanceOptions, options);
-    if (!instanceOptions.agent && process.env.http_proxy) {
-      logger.log(process.env.http_proxy);
-      const protocol = url.split(':')[0];
+    const protocol = url.split(':')[0];
+    const proxy = process.env[protocol];
+    if (!instanceOptions.agent && proxy) {
+      logger.info({ proxy });
       const Agent = loader(`${protocol}-proxy-agent`);
-      instanceOptions.agent = new Agent(process.env[`${protocol}_proxy`]);
+      instanceOptions.agent = new Agent(proxy);
     }
     return loader('node-fetch')(url, instanceOptions);
   }
