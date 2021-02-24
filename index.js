@@ -27,7 +27,7 @@ class Core {
     const instanceOptions = {};
     Object.assign(instanceOptions, options);
     const protocol = url.split(':')[0];
-    const proxy = process.env[protocol];
+    const proxy = process.env[`${protocol}_proxy`];
     if (!instanceOptions.agent && proxy) {
       logger.info({ proxy });
       const Agent = loader(`${protocol}-proxy-agent`);
