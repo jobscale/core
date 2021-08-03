@@ -1,22 +1,22 @@
 {
-  "name": "core",
-  "version": "1.0.1",
-  "description": "",
+  "name": "@jobscale/core",
+  "version": "0.0.1",
+  "description": "jobscale core",
   "scripts": {
-    "lint": "eslint '**/*.js'",
+    "lint": "eslint .",
     "test": "npm run lint"
   },
   "keywords": [],
-  "author": "jobscale",
-  "license": "MIT",
+  "author": "jobscale <jobscale@users.noreply.github.com>",
   "dependencies": {
     "http-proxy-agent": "^4.0.1",
     "https-proxy-agent": "^5.0.0",
     "node-fetch": "^2.6.1"
   },
   "devDependencies": {
-    "eslint": "^7.20.0",
+    "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.22.1"
-  }
+    "eslint-plugin-import": "^2.23.4"
+  },
+  "license": "MIT"
 }
