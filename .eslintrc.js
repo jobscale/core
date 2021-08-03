@@ -1,6 +1,8 @@
 module.exports = {
   extends: 'airbnb-base',
   globals: {
+    __fname: 'readonly',
+    __line: 'readonly',
     logger: 'readonly',
     promise: 'readonly',
     fetch: 'readonly',
@@ -8,13 +10,13 @@ module.exports = {
   rules: {
     indent: ['error', 2, { MemberExpression: 0 }],
     'arrow-parens': 'off',
-    'no-return-assign': 'off',
-    'no-plusplus': 'off',
-    'no-confusing-arrow': 'off',
     'class-methods-use-this': 'off',
-    'import/no-unresolved': 'off',
     'no-await-in-loop': 'off',
-    'lines-between-class-members': 'off',
-    'import/newline-after-import': 'off',
   },
+  env: {
+    'jest/globals': true,
+  },
+  plugins: [
+    'jest',
+  ],
 };

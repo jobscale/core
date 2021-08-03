@@ -1,10 +1,11 @@
 {
   "name": "@jobscale/core",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "jobscale core",
   "scripts": {
     "lint": "eslint .",
-    "test": "npm run lint"
+    "test:all": "https_proxy=tcp://127.0.0.1:3128 jest --coverage --collectCoverage",
+    "test": "npm run lint && jest --coverage"
   },
   "keywords": [],
   "author": "jobscale <jobscale@users.noreply.github.com>",
@@ -16,7 +17,9 @@
   "devDependencies": {
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.23.4"
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-jest": "^24.4.0",
+    "jest": "^27.0.6"
   },
   "license": "MIT"
 }

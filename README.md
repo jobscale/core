@@ -36,7 +36,7 @@ timer(1000, 'wait 1000 ms')
 ```
 require('@jobscale/core');
 
-fetch('inet-ip.info/ip')
+fetch('https://inet-ip.info/ip')
 .then(res => res.text())
 .then(ip => logger.info({ ip }));
 ```
