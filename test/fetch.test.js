@@ -23,7 +23,7 @@ describe('test fetch', () => {
     const storeEnv = process.env;
     beforeEach(() => {
       jest.resetModules();
-      process.env = { ...storeEnv, https_proxy: 'http://jsx.jp:3128' };
+      process.env = { ...storeEnv, https_proxy: 'http://127.0.0.1:3128' };
     });
     afterEach(() => {
       process.env = storeEnv;

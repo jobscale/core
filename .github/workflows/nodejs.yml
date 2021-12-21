@@ -29,6 +29,7 @@ jobs:
         dig aws.jsx.jp
         npm i
         npm run build --if-present
+        docker run --rm -p 3128:3128 -d ghcr.io/jobscale/squid
         npm test
       env:
         CI: true
