@@ -8,14 +8,17 @@ class Core {
   }
 
   initializeProperty() {
-    Object.defineProperty(global, '__line', {
-      get() { return new Error().stack.split('\n')[3].split(':').reverse()[1]; },
-      configurable: true,
-    });
-    Object.defineProperty(global, '__fname', {
-      get() { return new Error().stack.split('\n')[3].split(/[: ]/).reverse()[2]; },
-      configurable: true,
-    });
+    const { hasOwnProperty } = Object.prototype;
+    if (!hasOwnProperty.call(global, '__line')) {
+      Object.defineProperty(global, '__line', {
+        get() { return new Error().stack.split('\n')[3].split(':').reverse()[1]; },
+      });
+    }
+    if (!hasOwnProperty.call(global, '__fname')) {
+      Object.defineProperty(global, '__fname', {
+        get() { return new Error().stack.split('\n')[3].split(/[: ]/).reverse()[2]; },
+      });
+    }
   }
 
   initializePrototype() {
@@ -33,6 +36,7 @@ class Core {
   }
 
   get logger() {
+    if (global.logger) return global.logger;
     const std = console;
     const native = () => undefined;
     const logger = {};
