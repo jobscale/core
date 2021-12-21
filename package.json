@@ -1,6 +1,6 @@
 {
   "name": "@jobscale/core",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "@jobscale/core",
   "keywords": [
     "core",
@@ -16,24 +16,23 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
-    "test:all": "https_proxy=http://127.0.0.1:3128 jest --coverage --collectCoverage",
-    "test": "npm run lint && jest --coverage"
+    "test": "npm run lint && jest --runInBand --coverage --collectCoverage"
   },
   "pre-commit": [
     "test"
   ],
   "author": "jobscale <jobscale@users.noreply.github.com>",
   "dependencies": {
-    "http-proxy-agent": "^4.0.1",
+    "http-proxy-agent": "^5.0.0",
     "https-proxy-agent": "^5.0.0",
-    "node-fetch": "^2.6.5"
+    "node-fetch": "^2.6.6"
   },
   "devDependencies": {
-    "eslint": "^7.32.0",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.24.2",
-    "eslint-plugin-jest": "^24.4.2",
-    "jest": "^27.2.1",
+    "eslint": "^8.5.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-jest": "^25.3.0",
+    "jest": "^27.4.5",
     "pre-commit": "^1.2.2"
   },
   "license": "MIT"

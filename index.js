@@ -10,9 +10,11 @@ class Core {
   initializeProperty() {
     Object.defineProperty(global, '__line', {
       get() { return new Error().stack.split('\n')[3].split(':').reverse()[1]; },
+      configurable: true,
     });
     Object.defineProperty(global, '__fname', {
       get() { return new Error().stack.split('\n')[3].split(/[: ]/).reverse()[2]; },
+      configurable: true,
     });
   }
 
@@ -36,6 +38,7 @@ class Core {
     const logger = {};
     Object.entries(std).forEach(([key, value]) => {
       if (typeof value !== 'function') return;
+      /* global __fname, __line */
       logger[key] = (...args) => value(__fname, __line, ...args);
       std[key] = native;
     });
