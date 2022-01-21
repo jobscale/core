@@ -1,6 +1,6 @@
 {
   "name": "@jobscale/core",
-  "version": "0.0.11",
+  "version": "0.0.13",
   "description": "@jobscale/core",
   "keywords": [
     "core",
@@ -15,7 +15,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "publish": "npm publish --access public",
+    "publish": "echo npm publish --access public",
     "lint": "eslint .",
     "test": "npm run lint && jest --runInBand --coverage --collectCoverage"
   },
