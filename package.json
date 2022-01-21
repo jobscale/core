@@ -1,11 +1,11 @@
 {
   "name": "@jobscale/core",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "@jobscale/core",
   "keywords": [
     "core",
     "logger",
-    "promise",
+    "spawn",
     "fetch",
     "proxy"
   ],
@@ -15,7 +15,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "publish": "npm publish",
+    "publish": "npm publish --access public",
     "lint": "eslint .",
     "test": "npm run lint && jest --runInBand --coverage --collectCoverage"
   },
@@ -26,14 +26,14 @@
   "dependencies": {
     "http-proxy-agent": "^5.0.0",
     "https-proxy-agent": "^5.0.0",
-    "node-fetch": "^2.6.6"
+    "node-fetch": "^2.6.7"
   },
   "devDependencies": {
-    "eslint": "^8.5.0",
+    "eslint": "^8.7.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.25.3",
-    "eslint-plugin-jest": "^25.3.0",
-    "jest": "^27.4.5",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jest": "^25.7.0",
+    "jest": "^27.4.7",
     "pre-commit": "^1.2.2"
   },
   "license": "MIT"

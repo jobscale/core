@@ -1,9 +1,11 @@
+const { spawn } = require('child_process');
+
 class Core {
   constructor() {
     this.initializeProperty();
     this.initializePrototype();
     global.logger = this.logger;
-    global.promise = this.promise;
+    global.spawn = this.spawn;
     global.fetch = this.fetch;
   }
 
@@ -49,12 +51,32 @@ class Core {
     return logger;
   }
 
-  promise() {
+  spawn(command, params, options) {
     const prom = {};
     prom.pending = new Promise((...args) => {
-      [prom.resolve, prom.reject] = args;
+      [prom.resolve] = args;
     });
-    return prom;
+    const { res } = options || {};
+    const result = [];
+    const proc = spawn(command, params, { shell: true, ...options });
+    proc.stdout.on('data', data => {
+      if (!res) {
+        result.push(data);
+        return;
+      }
+      res.write(data);
+      clearTimeout(prom.timer);
+      prom.timer = setInterval(() => res.write(''), 60000);
+    });
+    proc.stderr.on('data', data => {
+      logger.error(`stderr: ${data.toString()}`);
+    });
+    proc.on('close', code => {
+      logger.info(`child process exited with code ${code}`);
+      clearTimeout(prom.timer);
+      prom.resolve(result.join(''));
+    });
+    return prom.pending;
   }
 
   fetch(url, options) {

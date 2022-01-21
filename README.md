@@ -1,39 +1,24 @@
 # @jobscale/core
 
-## install
+## Installation
 
 ```
 npm i @jobscale/core
 ```
 
-## examples
+## Examples
 
 ### logger
 
-```
+```javascript
 require('@jobscale/core');
 
 logger.info({ timestamp: Date.now() });
 ```
 
-### promise
-
-```
-require('@jobscale/core');
-
-const timer = (...args) => {
-  const prom = promise();
-  setTimeout(prom.resolve, ...args);
-  return prom.pending;
-};
-
-timer(1000, 'wait 1000 ms')
-.then(logger.info);
-```
-
 ### fetch
 
-```
+```javascript
 require('@jobscale/core');
 
 fetch('https://inet-ip.info/ip')
@@ -41,13 +26,28 @@ fetch('https://inet-ip.info/ip')
 .then(ip => logger.info({ ip }));
 ```
 
+### spawn
+
+```javascript
+require('@jobscale/core');
+
+const ping = ip => {
+  const params = ['-c', '2', '-i', '1', ip];
+  return spawn('ping', params);
+};
+
+ping('127.0.0.1')
+.then(result => logger.info({ result }));
+```
+
 ## ESLint settings
 
-```
+.eslintrc.js
+```javascript
 {
   globals: {
     logger: 'readonly',
-    promise: 'readonly',
+    spawn: 'readonly',
     fetch: 'readonly',
   },
 }
