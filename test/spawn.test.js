@@ -1,6 +1,6 @@
-const { logger } = require('..');
+const { Logger } = require('..');
 
-require('..');
+const logger = new Logger({ logLevel: 'trace' });
 
 describe('test spawn stdout', () => {
   it('spawn ping', async () => {

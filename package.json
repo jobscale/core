@@ -1,6 +1,6 @@
 {
   "name": "@jobscale/core",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "@jobscale/core",
   "keywords": [
     "core",
@@ -16,14 +16,16 @@
   "main": "index.js",
   "scripts": {
     "publish": "echo npm publish --access public",
+    "pretest": "npm run lint",
     "lint": "eslint .",
-    "test": "npm run lint && jest --runInBand --coverage --collectCoverage"
+    "test": "jest --runInBand --coverage --collectCoverage"
   },
   "pre-commit": [
     "test"
   ],
   "author": "jobscale <jobscale@users.noreply.github.com>",
   "dependencies": {
+    "@jobscale/logger": "^0.0.3",
     "http-proxy-agent": "^5.0.0",
     "https-proxy-agent": "^5.0.0",
     "node-fetch": "^2.6.7"

@@ -1,4 +1,6 @@
-require('..');
+const { Logger } = require('..');
+
+const logger = new Logger({ logLevel: 'trace' });
 
 describe('test fetch', () => {
   const action = () => {

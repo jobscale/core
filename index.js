@@ -1,26 +1,13 @@
 const { spawn } = require('child_process');
+const { Logger } = require('@jobscale/logger');
+
+const logger = new Logger({ logLevel: 'trace' });
 
 class Core {
   constructor() {
-    this.initializeProperty();
     this.initializePrototype();
-    global.logger = this.logger;
     global.spawn = this.spawn;
     global.fetch = this.fetch;
-  }
-
-  initializeProperty() {
-    const { hasOwnProperty } = Object.prototype;
-    if (!hasOwnProperty.call(global, '__line')) {
-      Object.defineProperty(global, '__line', {
-        get() { return new Error().stack.split('\n')[3].split(':').reverse()[1]; },
-      });
-    }
-    if (!hasOwnProperty.call(global, '__fname')) {
-      Object.defineProperty(global, '__fname', {
-        get() { return new Error().stack.split('\n')[3].split(/[: ]/).reverse()[2]; },
-      });
-    }
   }
 
   initializePrototype() {
@@ -35,20 +22,6 @@ class Core {
       };
       return `${d.Y}-${d.m}-${d.d} ${d.H}:${d.M}:${d.S}`;
     };
-  }
-
-  get logger() {
-    if (global.logger) return global.logger;
-    const std = console;
-    const native = () => undefined;
-    const logger = {};
-    Object.entries(std).forEach(([key, value]) => {
-      if (typeof value !== 'function') return;
-      /* global __fname, __line */
-      logger[key] = (...args) => value(__fname, __line, ...args);
-      std[key] = native;
-    });
-    return logger;
   }
 
   spawn(command, params, options) {
@@ -94,3 +67,4 @@ class Core {
 }
 
 module.exports = new Core();
+module.exports.Logger = Logger;
