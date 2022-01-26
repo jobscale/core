@@ -1,5 +1,6 @@
 const { spawn } = require('child_process');
 const { Logger } = require('@jobscale/logger');
+const fetch = require('@jobscale/fetch');
 
 const logger = new Logger({ logLevel: 'trace' });
 
@@ -7,7 +8,7 @@ class Core {
   constructor() {
     this.initializePrototype();
     global.spawn = this.spawn;
-    global.fetch = this.fetch;
+    global.fetch = fetch;
   }
 
   initializePrototype() {
@@ -50,19 +51,6 @@ class Core {
       prom.resolve(result.join(''));
     });
     return prom.pending;
-  }
-
-  fetch(url, options) {
-    const loader = require;
-    const instanceOptions = { ...options };
-    const [protocol] = url.split(':');
-    const proxy = process.env[`${protocol}_proxy`];
-    if (!instanceOptions.agent && proxy) {
-      logger.info({ protocol, proxy });
-      const Agent = loader(`${protocol}-proxy-agent`);
-      instanceOptions.agent = new Agent(proxy);
-    }
-    return loader('node-fetch')(url, instanceOptions);
   }
 }
 

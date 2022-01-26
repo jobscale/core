@@ -1,13 +1,14 @@
 {
   "name": "@jobscale/core",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "@jobscale/core",
   "keywords": [
     "core",
     "logger",
     "spawn",
     "fetch",
-    "proxy"
+    "https_proxy",
+    "http_proxy"
   ],
   "repository": {
     "type": "git",
@@ -25,10 +26,8 @@
   ],
   "author": "jobscale <jobscale@users.noreply.github.com>",
   "dependencies": {
-    "@jobscale/logger": "^0.0.3",
-    "http-proxy-agent": "^5.0.0",
-    "https-proxy-agent": "^5.0.0",
-    "node-fetch": "^2.6.7"
+    "@jobscale/fetch": "^0.0.2",
+    "@jobscale/logger": "^0.0.3"
   },
   "devDependencies": {
     "eslint": "^8.7.0",
