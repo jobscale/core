@@ -4,7 +4,8 @@ const logger = new Logger({ logLevel: 'trace' });
 
 describe('test fetch', () => {
   const action = () => {
-    const url = 'https://inet-ip.info/ip';
+    // const url = 'https://inet-ip.info/ip';
+    const url = 'https://ipinfo.io/ip';
     const regexp = /^((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])$/;
     return fetch(url)
     .then(res => res.data)
@@ -35,6 +36,11 @@ describe('test fetch', () => {
       .then(({ ip, regexp }) => {
         logger.info({ ip });
         expect(ip).toMatch(regexp);
+      })
+      .catch(e => {
+        const { code, message, response: { status, statusText } } = e;
+        logger.info({ status, statusText, code, message });
+        expect(message).toMatch(/^Request failed with status code 502$/);
       });
     });
   });
