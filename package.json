@@ -1,6 +1,6 @@
 {
   "name": "@jobscale/core",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "description": "@jobscale/core",
   "author": "jobscale <jobscale@users.noreply.github.com>",
   "keywords": [
@@ -27,7 +27,7 @@
   ],
   "dependencies": {
     "@jobscale/fetch": "^0.0.3",
-    "@jobscale/logger": "^0.0.5"
+    "@jobscale/logger": "^0.0.6"
   },
   "devDependencies": {
     "eslint": "^8.18.0",

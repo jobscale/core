@@ -18,13 +18,13 @@ update() {
   LIST=$(cat package.json | jq .dependencies | jq 'keys' | jq --raw-output 'join(" ")')
   LATEST=()
   update
-  time npm i ${LATEST[@]}
+  time npm i --legacy-peer-deps ${LATEST[@]}
   echo "UPDATED '${LIST[@]}'"
 
   # LIST=$(cat package.json | jp -u "keys(devDependencies).join(' ', @)")
   LIST=$(cat package.json | jq .devDependencies | jq 'keys' | jq --raw-output 'join(" ")')
   LATEST=()
   update
-  time npm i -D ${LATEST[@]}
+  time npm i -D --legacy-peer-deps ${LATEST[@]}
   echo "UPDATED '${LIST[@]}'"
 }
