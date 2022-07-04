@@ -9,6 +9,9 @@ class Core {
     this.initializePrototype();
     global.spawn = this.spawn;
     global.fetch = fetch;
+    global.logger = logger;
+    this.logger = logger;
+    this.Logger = Logger;
   }
 
   initializePrototype() {
@@ -55,4 +58,3 @@ class Core {
 }
 
 module.exports = new Core();
-module.exports.Logger = Logger;
