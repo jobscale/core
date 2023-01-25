@@ -1,6 +1,5 @@
 const { spawn } = require('child_process');
 const { Logger } = require('@jobscale/logger');
-const fetch = require('@jobscale/fetch');
 
 const logger = new Logger({ logLevel: 'trace' });
 
@@ -8,7 +7,6 @@ class Core {
   constructor() {
     this.initializePrototype();
     global.spawn = this.spawn;
-    global.fetch = fetch;
     global.logger = logger;
     this.logger = logger;
     this.Logger = Logger;
