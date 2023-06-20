@@ -2,7 +2,6 @@ module.exports = {
   extends: 'airbnb-base',
   globals: {
     spawn: 'readonly',
-    fetch: 'readonly',
   },
   rules: {
     indent: ['error', 2, { MemberExpression: 0 }],
