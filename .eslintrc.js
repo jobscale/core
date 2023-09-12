@@ -17,7 +17,11 @@ module.exports = {
     }],
   },
   env: {
+    node: true,
     'jest/globals': true,
+  },
+  parserOptions: {
+    ecmaVersion: 2023,
   },
   plugins: [
     'jest',

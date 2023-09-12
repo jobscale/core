@@ -1,6 +1,6 @@
 {
   "name": "@jobscale/core",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "@jobscale/core",
   "license": "MIT",
   "author": "jobscale <jobscale@users.noreply.github.com>",
@@ -28,14 +28,14 @@
     "test"
   ],
   "dependencies": {
-    "@jobscale/logger": "^0.1.0"
+    "@jobscale/logger": "^0.2.0"
   },
   "devDependencies": {
-    "eslint": "^8.43.0",
+    "eslint": "^8.49.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-jest": "^27.2.2",
-    "jest": "^29.5.0",
+    "eslint-plugin-import": "^2.28.1",
+    "eslint-plugin-jest": "^27.2.3",
+    "jest": "^29.7.0",
     "pre-commit": "^1.2.2"
   }
 }
