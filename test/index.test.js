@@ -1,4 +1,5 @@
-const { Logger } = require('..');
+import { jest } from '@jest/globals';
+import { Logger, spawn } from '../index.js';
 
 const logger = new Logger({ logLevel: 'trace' });
 
@@ -18,10 +19,9 @@ describe('test @jobscale/core', () => {
       afterEach(() => {
         logger.info('afterEach');
       });
-      it('toBeUndefined prompt', () => {
-        const loader = require;
-        loader('..');
-        expect(logger.info({ timestamp: new Date().toLocaleString() })).toBeUndefined();
+      it('toBeUndefined prompt', async () => {
+        const { logger: logger2 } = await import('../index.js');
+        expect(logger2.info({ timestamp: new Date().toLocaleString() })).toBeUndefined();
       });
     });
   });

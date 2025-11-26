@@ -1,15 +1,11 @@
-const { spawn } = require('child_process');
-const { Logger } = require('@jobscale/logger');
+import child from 'child_process';
+import { Logger } from '@jobscale/logger';
 
 const logger = new Logger({ logLevel: 'trace' });
 
-class Core {
+export class Core {
   constructor() {
     this.initializePrototype();
-    global.spawn = this.spawn;
-    global.logger = logger;
-    this.logger = logger;
-    this.Logger = Logger;
   }
 
   initializePrototype() {
@@ -33,7 +29,7 @@ class Core {
     });
     const { res } = options || {};
     const result = [];
-    const proc = spawn(command, params, { shell: true, ...options });
+    const proc = child.spawn(command, params, { shell: true, ...options });
     proc.stdout.on('data', data => {
       if (!res) {
         result.push(data);
@@ -55,4 +51,6 @@ class Core {
   }
 }
 
-module.exports = new Core();
+export const core = new Core();
+export const { spawn } = core;
+export { Logger, logger };
