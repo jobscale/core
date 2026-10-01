@@ -1,7 +1,7 @@
 import { jest } from '@jest/globals';
-import { Logger, spawn } from '../index.js';
+import { createLogger, spawn } from '../index.js';
 
-const logger = new Logger({ logLevel: 'trace' });
+const logger = createLogger({ level: 'verbose' });
 
 describe('test @jobscale/core', () => {
   describe('test logger', () => {
