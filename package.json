@@ -1,6 +1,6 @@
 {
   "name": "@jobscale/core",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "@jobscale/core",
   "license": "MIT",
   "author": "jobscale <jobscale@users.noreply.github.com>",
@@ -27,7 +27,7 @@
   },
   "pre-commit": "test",
   "dependencies": {
-    "@jobscale/logger": "^0.10.1"
+    "@jobscale/create-logger": "^1.0.5"
   },
   "devDependencies": {
     "@jobscale/eslint-plugin-standard": "^0.0.11",

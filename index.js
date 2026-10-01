@@ -1,7 +1,7 @@
 import child from 'child_process';
-import { Logger } from '@jobscale/logger';
+import { createLogger } from '@jobscale/create-logger';
 
-const logger = new Logger({ logLevel: 'trace' });
+const logger = createLogger({ level: 'verbose' });
 
 export class Core {
   constructor() {
@@ -53,4 +53,4 @@ export class Core {
 
 export const core = new Core();
 export const { spawn } = core;
-export { Logger, logger };
+export { createLogger, logger };
