@@ -11,7 +11,7 @@ npm i @jobscale/core
 ### logger
 
 ```javascript
-require('@jobscale/core');
+import logger from '@jobscale/core';
 
 logger.info({ timestamp: Date.now() });
 ```
@@ -29,7 +29,7 @@ fetch('https://inet-ip.info/ip')
 ### spawn
 
 ```javascript
-require('@jobscale/core');
+import spawn from '@jobscale/core';
 
 const ping = ip => {
   const params = ['-c', '2', '-i', '1', ip];
@@ -38,23 +38,4 @@ const ping = ip => {
 
 ping('127.0.0.1')
 .then(result => logger.info({ result }));
-```
-
-## ESLint settings
-
-.eslintrc.js
-```javascript
-{
-  globals: {
-    logger: 'readonly',
-    spawn: 'readonly',
-    fetch: 'readonly',
-  },
-}
-```
-
-## Jest test
-```
-docker run --rm -p 127.0.0.1:3128:3128 -d ghcr.io/jobscale/squid
-npm test
 ```
